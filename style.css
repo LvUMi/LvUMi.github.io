@@ -51,15 +51,6 @@ header h1 {
     width: 100%;
     border-radius: 10px;
 }
-.messages {
-    padding: 20px;
-    background-color: #f8e8f6;
-    border-radius: 10px;
-    margin: 20px;
-}
-.messages p {
-    margin: 10px 0;
-}
 .playlist {
     text-align: center;
     margin: 20px;
