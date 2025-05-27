@@ -136,31 +136,6 @@ function showSurprise() {
 startGameBtn.addEventListener('click', startGame);
 surpriseBtn.addEventListener('click', showSurprise);
 
-// Tomates subindo no fundo
-const heartsBg = document.querySelector('.hearts-bg');
-function createTomate() {
-    if (!heartsBg) return;
-    const tomateImg = document.createElement('img');
-    tomateImg.src = 'tomate.png';
-    tomateImg.alt = 'Tomate';
-    tomateImg.className = 'tomate-img heart-anim';
-    const size = Math.random() * 30 + 20; // 20px a 50px
-    tomateImg.style.left = `${Math.random() * 100}%`;
-    tomateImg.style.width = `${size}px`;
-    tomateImg.style.height = `${size}px`;
-    tomateImg.style.animationDuration = `${Math.random() * 2 + 4}s`; // 4s a 6s
-    tomateImg.style.position = 'absolute';
-    tomateImg.style.pointerEvents = 'none';
-    tomateImg.style.userSelect = 'none';
-    tomateImg.style.animationName = 'floatUp, sway' + (Math.floor(Math.random() * 2) + 1);
-    heartsBg.appendChild(tomateImg);
-    setTimeout(() => {
-        tomateImg.remove();
-    }, 7000);
-}
-
-// Cria tomates continuamente
-setInterval(createTomate, 600);
 
 // Oscilação extra
 const swayKeyframes = `

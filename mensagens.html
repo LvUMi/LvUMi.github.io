@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Pequenas Mensagens</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        .floating-message {
+            position: absolute;
+            padding: 12px 24px;
+            background: #fff5e1;
+            color: #d92027;
+            border-radius: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            font-size: 1.1em;
+            font-style: italic;
+            opacity: 0.95;
+            z-index: 10;
+            animation: floatMsg 12s linear infinite;
+        }
+        @keyframes floatMsg {
+            0% { opacity: 0; transform: translateY(40px) scale(0.9); }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { opacity: 0; transform: translateY(-60px) scale(1.05); }
+        }
+        body { min-height: 100vh; background: #ffccd5; overflow: hidden; }
+    </style>
+</head>
+<body>
+    <a href="index.html" style="position:fixed;top:20px;left:20px;background:#fff5e1;padding:8px 18px;border-radius:10px;text-decoration:none;color:#d92027;font-weight:bold;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,0.08);">← Voltar</a>
+    <script>
+        const mensagens = [
+            "Você é meu lugar favorito no mundo inteiro.",
+            "Com você, todos os dias são especiais.",
+            "Obrigado por ser meu porto seguro.",
+            "Seu sorriso ilumina meu dia.",
+            "Te amo mais do que pizza!",
+            "Você faz tudo valer a pena.",
+            "Meu coração é seu.",
+            "Amo cada detalhe seu.",
+            "Você é meu sonho realizado.",
+            "Quero estar com você pra sempre.",
+            "Você é minha paz.",
+            "Meu mundo ficou mais bonito com você.",
+            "Você é minha melhor escolha.",
+            "Te quero em todos os meus amanhãs.",
+            "Você é minha inspiração diária.",
+            "Com você, até segunda-feira é feliz.",
+            "Você é meu abrigo.",
+            "Meu riso é mais sincero com você.",
+            "Você é minha pessoa favorita.",
+            "Te amo infinito!"
+        ];
+        function randomPos(max) {
+            return Math.random() * max;
+        }
+        function createFloatingMessage(msg) {
+            const el = document.createElement('div');
+            el.className = 'floating-message';
+            el.textContent = msg;
+            el.style.top = randomPos(window.innerHeight - 60) + 'px';
+            el.style.left = randomPos(window.innerWidth - 260) + 'px';
+            document.body.appendChild(el);
+            setTimeout(() => el.remove(), 12000);
+        }
+        setInterval(() => {
+            const msg = mensagens[Math.floor(Math.random() * mensagens.length)];
+            createFloatingMessage(msg);
+        }, 1800);
+        // Mensagens iniciais
+        for(let i=0;i<5;i++) {
+            setTimeout(() => {
+                const msg = mensagens[Math.floor(Math.random() * mensagens.length)];
+                createFloatingMessage(msg);
+            }, i*800);
+        }
+    </script>
+</body>
+</html>
