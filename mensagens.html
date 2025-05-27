@@ -17,13 +17,25 @@
             font-style: italic;
             opacity: 0.95;
             z-index: 10;
-            animation: floatMsg 12s linear infinite;
+            animation: floatMsg 12s linear forwards;
+            pointer-events: none;
+            min-width: 120px;
+            max-width: 80vw;
+            word-break: break-word;
         }
         @keyframes floatMsg {
             0% { opacity: 0; transform: translateY(40px) scale(0.9); }
             10% { opacity: 1; }
             90% { opacity: 1; }
             100% { opacity: 0; transform: translateY(-60px) scale(1.05); }
+        }
+        @media (max-width: 600px) {
+            .floating-message {
+                font-size: 1em;
+                padding: 10px 12px;
+                min-width: 80px;
+                max-width: 95vw;
+            }
         }
         body { min-height: 100vh; background: #ffccd5; overflow: hidden; }
     </style>
@@ -53,28 +65,42 @@
             "Você é minha pessoa favorita.",
             "Te amo infinito!"
         ];
-        function randomPos(max) {
-            return Math.random() * max;
+        function randomPosY(elHeight) {
+            // Garante que não fique colado no topo/rodapé
+            const minY = 10;
+            const maxY = window.innerHeight - elHeight - 30;
+            return Math.random() * (maxY - minY) + minY;
+        }
+        function randomPosX(elWidth) {
+            // Garante que não fique colado nas laterais
+            const minX = 10;
+            const maxX = window.innerWidth - elWidth - 10;
+            return Math.random() * (maxX - minX) + minX;
         }
         function createFloatingMessage(msg) {
             const el = document.createElement('div');
             el.className = 'floating-message';
             el.textContent = msg;
-            el.style.top = randomPos(window.innerHeight - 60) + 'px';
-            el.style.left = randomPos(window.innerWidth - 260) + 'px';
             document.body.appendChild(el);
+            // Aguarda renderizar para pegar tamanho real
+            setTimeout(() => {
+                const elWidth = el.offsetWidth;
+                const elHeight = el.offsetHeight;
+                el.style.top = randomPosY(elHeight) + 'px';
+                el.style.left = randomPosX(elWidth) + 'px';
+            }, 10);
             setTimeout(() => el.remove(), 12000);
         }
         setInterval(() => {
             const msg = mensagens[Math.floor(Math.random() * mensagens.length)];
             createFloatingMessage(msg);
-        }, 1800);
+        }, 2200);
         // Mensagens iniciais
-        for(let i=0;i<5;i++) {
+        for(let i=0;i<4;i++) {
             setTimeout(() => {
                 const msg = mensagens[Math.floor(Math.random() * mensagens.length)];
                 createFloatingMessage(msg);
-            }, i*800);
+            }, i*1200);
         }
     </script>
 </body>
