@@ -1,0 +1,63 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fdf1f1;
+    color: #333;
+}
+header {
+    text-align: center;
+    background-color: #ffccd5;
+    padding: 20px;
+}
+header h1 {
+    color: #d92027;
+}
+.timeline {
+    padding: 20px;
+}
+.timeline-item {
+    margin: 20px 0;
+    border-left: 2px solid #d92027;
+    padding-left: 10px;
+}
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 10px;
+    padding: 20px;
+}
+.gallery img {
+    width: 100%;
+    border-radius: 10px;
+}
+.messages {
+    padding: 20px;
+    background-color: #ffe6e6;
+    border-radius: 10px;
+    margin: 20px;
+}
+.messages p {
+    margin: 10px 0;
+}
+.playlist {
+    text-align: center;
+    margin: 20px;
+}
+.game {
+    text-align: center;
+    margin: 20px;
+}
+.surprise {
+    text-align: center;
+    margin: 20px;
+}
+.surprise button {
+    background-color: #d92027;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+}
