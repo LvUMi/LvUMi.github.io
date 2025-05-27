@@ -117,12 +117,14 @@ header h1 {
     100% {
         transform: translateY(-110vh) scale(1) rotate(10deg);
         opacity: 0;
+    }
+}
 
 .welcome-box { 
-background-color: #fff5e1; /* bege suave */
-border-radius: 20px;
-display: inline-block;
-padding: 20px 40px;
-box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-margin-bottom: 10px;
+    background-color: #fff5e1; /* bege suave */
+    border-radius: 20px;
+    display: inline-block;
+    padding: 20px 40px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    margin-bottom: 10px;
 }
