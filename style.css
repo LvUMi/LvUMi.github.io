@@ -2,7 +2,7 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #fdf1f1;
+    background-color: #ffccd5; /* Changed to match header background */
     color: #333;
 }
 header {
