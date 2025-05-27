@@ -79,33 +79,6 @@ header h1 {
     animation: floatUp linear forwards;
 }
 
-.heart-shape {
-    width: 1em;
-    height: 1em;
-    position: relative;
-    display: inline-block;
-    transform: rotate(-45deg);
-}
-
-.heart-shape::before,
-.heart-shape::after {
-    content: "";
-    position: absolute;
-    width: 1em;
-    height: 1em;
-    background: #d92027;
-    border-radius: 50%;
-}
-
-.heart-shape::before {
-    left: 0;
-    top: 0;
-}
-.heart-shape::after {
-    left: 0.5em;
-    top: 0;
-}
-
 @keyframes floatUp {
     0% {
         transform: translateY(0) scale(1) rotate(-10deg);
@@ -127,4 +100,12 @@ header h1 {
     padding: 20px 40px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.05);
     margin-bottom: 10px;
+}
+
+.tomate-img {
+    pointer-events: auto;
+    user-select: none;
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    background: #fff5e1;
 }
