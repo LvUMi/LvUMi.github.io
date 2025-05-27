@@ -61,3 +61,61 @@ header h1 {
     cursor: pointer;
     border-radius: 5px;
 }
+
+.hearts-bg {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.heart-anim {
+    position: absolute;
+    bottom: -60px;
+    opacity: 0.7;
+    animation: floatUp linear forwards;
+}
+
+.heart-shape {
+    width: 1em;
+    height: 1em;
+    position: relative;
+    display: inline-block;
+    transform: rotate(-45deg);
+}
+
+.heart-shape::before,
+.heart-shape::after {
+    content: "";
+    position: absolute;
+    width: 1em;
+    height: 1em;
+    background: #d92027;
+    border-radius: 50%;
+}
+
+.heart-shape::before {
+    left: 0;
+    top: 0;
+}
+.heart-shape::after {
+    left: 0.5em;
+    top: 0;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(0) scale(1) rotate(-10deg);
+        opacity: 0.7;
+    }
+    80% {
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateY(-110vh) scale(1) rotate(10deg);
+        opacity: 0;
+    }
+}
