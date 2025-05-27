@@ -13,29 +13,38 @@ function startGame() {
     gameScore.textContent = '';
     gameArea.innerHTML = '';
 
+    let tomatesLeft = 20;
     for (let i = 0; i < 20; i++) {
-        const heart = document.createElement('div');
-        heart.classList.add('heart');
-        heart.style.position = 'absolute';
-        heart.style.top = `${Math.random() * (gameArea.clientHeight - 30)}px`;
-        heart.style.left = `${Math.random() * (gameArea.clientWidth - 30)}px`;
-        heart.style.width = '30px';
-        heart.style.height = '30px';
-        heart.style.backgroundColor = '#d92027';
-        heart.style.borderRadius = '50%';
-        heart.style.cursor = 'pointer';
-        heart.addEventListener('click', () => {
+        const tomateImg = document.createElement('img');
+        tomateImg.src = 'tomate.png';
+        tomateImg.alt = 'Tomate';
+        tomateImg.className = 'tomate-img';
+        tomateImg.style.position = 'absolute';
+        tomateImg.style.top = `${Math.random() * (gameArea.clientHeight - 30)}px`;
+        tomateImg.style.left = `${Math.random() * (gameArea.clientWidth - 30)}px`;
+        tomateImg.style.width = '30px';
+        tomateImg.style.height = '30px';
+        tomateImg.style.cursor = 'pointer';
+        tomateImg.addEventListener('click', () => {
             if (!gameActive) return;
             score++;
-            heart.remove();
+            tomatesLeft--;
+            tomateImg.remove();
+            if (tomatesLeft === 0) {
+                gameActive = false;
+                gameArea.innerHTML = '';
+                gameScore.textContent = 'Parabéns, você acabou de ganhar um chocolatinho🥳🥳🥳';
+            }
         });
-        gameArea.appendChild(heart);
+        gameArea.appendChild(tomateImg);
     }
 
     setTimeout(() => {
-        gameActive = false;
-        gameArea.innerHTML = '';
-        gameScore.textContent = `Você clicou em ${score} corações!`;
+        if (gameActive) {
+            gameActive = false;
+            gameArea.innerHTML = '';
+            gameScore.textContent = `Você clicou em ${score} tomates!`;
+        }
     }, gameDuration);
 }
 
@@ -88,10 +97,19 @@ function showSurprise() {
     message.style.marginTop = '20px';
     message.style.fontWeight = 'bold';
 
+
     btnYes.onclick = () => {
         message.textContent = 'Eu DUVIDO voce me aguentar por mais um ano';
         btnYes.style.display = 'none';
         btnNo.style.display = 'none';
+        // Adiciona imagem de surpresa
+        const img = document.createElement('img');
+        img.src = 'foto9.jpg'; // Troque para a imagem que quiser
+        img.alt = 'Eu agora';
+        img.style.marginTop = '15px';
+        img.style.maxWidth = '100%';
+        img.style.borderRadius = '10px';
+        modalBox.appendChild(img);
     };
 
     btnNo.onclick = () => {
@@ -118,33 +136,31 @@ function showSurprise() {
 startGameBtn.addEventListener('click', startGame);
 surpriseBtn.addEventListener('click', showSurprise);
 
-// Corações subindo no fundo
+// Tomates subindo no fundo
 const heartsBg = document.querySelector('.hearts-bg');
-function createHeart() {
-    const heart = document.createElement('div');
-    heart.className = 'heart-anim';
+function createTomate() {
+    if (!heartsBg) return;
+    const tomateImg = document.createElement('img');
+    tomateImg.src = 'tomate.png';
+    tomateImg.alt = 'Tomate';
+    tomateImg.className = 'tomate-img heart-anim';
     const size = Math.random() * 30 + 20; // 20px a 50px
-    heart.style.left = `${Math.random() * 100}%`;
-    heart.style.width = `${size}px`;
-    heart.style.height = `${size}px`;
-    heart.style.animationDuration = `${Math.random() * 2 + 4}s`; // 4s a 6s
-
-    // Oscilação horizontal
-    heart.style.animationName = 'floatUp, sway' + (Math.floor(Math.random() * 2) + 1);
-
-    // Cria o coração com CSS
-    const heartShape = document.createElement('div');
-    heartShape.className = 'heart-shape';
-    heartShape.style.width = '100%';
-    heartShape.style.height = '100%';
-    heart.appendChild(heartShape);
-
-    heartsBg.appendChild(heart);
-
+    tomateImg.style.left = `${Math.random() * 100}%`;
+    tomateImg.style.width = `${size}px`;
+    tomateImg.style.height = `${size}px`;
+    tomateImg.style.animationDuration = `${Math.random() * 2 + 4}s`; // 4s a 6s
+    tomateImg.style.position = 'absolute';
+    tomateImg.style.pointerEvents = 'none';
+    tomateImg.style.userSelect = 'none';
+    tomateImg.style.animationName = 'floatUp, sway' + (Math.floor(Math.random() * 2) + 1);
+    heartsBg.appendChild(tomateImg);
     setTimeout(() => {
-        heart.remove();
+        tomateImg.remove();
     }, 7000);
 }
+
+// Cria tomates continuamente
+setInterval(createTomate, 600);
 
 // Oscilação extra
 const swayKeyframes = `
