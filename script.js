@@ -117,3 +117,55 @@ function showSurprise() {
 
 startGameBtn.addEventListener('click', startGame);
 surpriseBtn.addEventListener('click', showSurprise);
+
+// Corações subindo no fundo
+const heartsBg = document.querySelector('.hearts-bg');
+function createHeart() {
+    const heart = document.createElement('div');
+    heart.className = 'heart-anim';
+    const size = Math.random() * 30 + 20; // 20px a 50px
+    heart.style.left = `${Math.random() * 100}%`;
+    heart.style.width = `${size}px`;
+    heart.style.height = `${size}px`;
+    heart.style.animationDuration = `${Math.random() * 2 + 4}s`; // 4s a 6s
+
+    // Oscilação horizontal
+    heart.style.animationName = 'floatUp, sway' + (Math.floor(Math.random() * 2) + 1);
+
+    // Cria o coração com CSS
+    const heartShape = document.createElement('div');
+    heartShape.className = 'heart-shape';
+    heartShape.style.width = '100%';
+    heartShape.style.height = '100%';
+    heart.appendChild(heartShape);
+
+    heartsBg.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 7000);
+}
+
+// Oscilação extra
+const swayKeyframes = `
+@keyframes sway1 {
+    0% { transform: translateX(0) rotate(-10deg);}
+    25% { transform: translateX(-10px) rotate(-5deg);}
+    50% { transform: translateX(10px) rotate(5deg);}
+    75% { transform: translateX(-10px) rotate(-5deg);}
+    100% { transform: translateX(0) rotate(10deg);}
+}
+@keyframes sway2 {
+    0% { transform: translateX(0) rotate(10deg);}
+    20% { transform: translateX(12px) rotate(0deg);}
+    50% { transform: translateX(-12px) rotate(-10deg);}
+    80% { transform: translateX(12px) rotate(0deg);}
+    100% { transform: translateX(0) rotate(-10deg);}
+}
+`;
+const style = document.createElement('style');
+style.innerHTML = swayKeyframes;
+document.head.appendChild(style);
+
+// Cria corações continuamente
+setInterval(createHeart, 600);
